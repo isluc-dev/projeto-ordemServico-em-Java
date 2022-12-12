@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import sistemaOrdemServico.model.Cliente;
 import sistemaOrdemServico.model.Funcionario;
 import sistemaOrdemServico.model.Servico;
+import sistemaordemserviço.contrato.FuncaoContrato;
 
 public class SistemaExecutavel {
 
@@ -16,7 +17,7 @@ public class SistemaExecutavel {
 		String login = JOptionPane.showInputDialog("login");
 		String senha = JOptionPane.showInputDialog("senha");
 
-		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("123")) {
+		if (new FuncaoContrato(new Funcionario(login,senha)).autenticar()) {
 
 			int atender = JOptionPane.showConfirmDialog(null, "Atendimento ao Cliente !");
 			if (atender == 0) {

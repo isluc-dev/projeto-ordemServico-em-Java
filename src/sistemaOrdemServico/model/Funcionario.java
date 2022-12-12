@@ -4,14 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Funcionario extends Pessoa {
+import sistemaordemserviço.contrato.PermitirAcesso;
+
+public class Funcionario extends Pessoa implements PermitirAcesso {
 
 	private String cargo;
 	private String especialidade;
 	private String tempoServico;
+	private String login;
+	private String senha;
+	
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 	public Funcionario() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Funcionario(String login , String senha) {
+		this.login = login;
+		this.senha = senha;
 	}
 
 	public String getCargo() {
@@ -74,5 +100,20 @@ public class Funcionario extends Pessoa {
 			return "nao Atendido";
 		}
 	}
+
+	
+	@Override
+	public boolean autenticar(String login, String senha) {
+		this.login = login;
+		this.senha = senha;
+		return autenticar();
+	}
+    
+	@Override
+	public boolean autenticar() {
+		
+		return login.contentEquals("admin")&& senha.equalsIgnoreCase("123");
+	}
+   
 
 }
